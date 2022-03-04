@@ -134,6 +134,40 @@ Author: Jung
   - No-operation : \_
 
 </br>
+
+```html
+<!-- 자바스크립트 인라인 사용 전 -->
+<script>
+  var username = [[${user.username}]];
+  var age = [[${user.age}]];
+  //자바스크립트 내추럴 템플릿
+  var username2 = /*[[${user.username}]]*/ "test username";
+  //객체
+  var user = [[${user}]];
+</script>
+
+<!-- 자바스크립트 인라인 사용 후 -->
+<script th:inline="javascript">
+  var username = [[${user.username}]];
+  var age = [[${user.age}]];
+  //자바스크립트 내추럴 템플릿
+  var username2 = /*[[${user.username}]]*/ "test username";
+  //객체
+  var user = [[${user}]];
+</script>
+
+<!-- 자바스크립트 인라인 each -->
+<script th:inline="javascript">
+  [# th:each="user, stat : ${users}"]
+  var user[[${stat.count}]] = [[${user}]];
+  [/]
+</script>
+```
+
+> 인라인을 사용하면 프로퍼티에 순수 해석이 아닌 타입으로 자동 변환 해줌  
+> 객체도 json으로 파싱해줌
+
+</br>
 </br>
 </br>
 
