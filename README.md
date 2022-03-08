@@ -21,6 +21,8 @@ Author: Jung
     - [**select**](#select)
     - [**ModleAttribute의 또다른 기능**](#modleattribute의-또다른-기능)
   - [**Section3 메시지 - 국제화**](#section3-메시지---국제화)
+    - [**스프링 부트 메시지 소스 설정**](#스프링-부트-메시지-소스-설정)
+    - [**MessageSource Interface**](#messagesource-interface)
   - [**Section4 검증1 - validation**](#section4-검증1---validation)
   - [**Section5 검증2 - Bean Validation**](#section5-검증2---bean-validation)
   - [**Section6 로그인 처리1 - 쿠키 세션**](#section6-로그인-처리1---쿠키-세션)
@@ -332,6 +334,86 @@ Author: Jung
 </br>
 
 ### **Section3 메시지 - 국제화**
+
+</br>
+
+> 메시지는 여러화면에 있는 단어를 유지 보수하기 용이하도록 하기 위해  
+> 다양한 메시지를 한 곳에서 관리하도록 해주는 기능
+>
+> 국제화는 HTTP header 중 Accept-Language 요청에 따라  
+> 각 locale별로 서비스를 관리하는 것
+
+</br>
+
+#### **스프링 부트 메시지 소스 설정**
+
+</br>
+
+- application.properites
+
+```java
+spring.messages.basename=messages // default
+```
+
+</br>
+
+> MessageSource를 스프링 빈으로 등록할 필요 X  
+> 설정만 한다면 스프링부트가 MessageSource를 자동으로 스프링 빈으로 등록
+
+</br>
+
+- messages.properties - locale default
+
+```java
+
+hello=안녕
+hello.name=안녕 {0}
+
+label.item=상품
+label.item.id=상품 ID
+label.item.itemName=상품명
+label.item.price=가격
+label.item.quantity=수량
+
+page.items=상품 목록
+page.item=상품 상세
+page.addItem=상품 등록
+page.updateItem=상품 수정
+
+button.save=저장
+button.cancel=취소
+
+```
+
+- messages_en.properties
+
+```java
+
+hello=hello
+hello.name=hello {0}
+
+label.item=Item
+label.item.id=Item ID
+label.item.itemName=Item Name
+label.item.price=price
+label.item.quantity=quantity
+page.items=Item List
+page.item=Item Detail
+
+page.addItem=Item Add
+page.updateItem=Item Update
+button.save=Save
+button.cancel=Cancel
+
+```
+
+</br>
+
+#### **MessageSource Interface**
+
+</br>
+
+> getMessage(String code, @Nullable Object[] args, @Nullable String defaultMessage, Locale locale)
 
 </br>
 </br>
